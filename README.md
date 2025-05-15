@@ -49,7 +49,8 @@ With rising mental health concerns in the tech industry, there's a growing need 
 ---
 
 ## Acknowledgements
-Dataset from OSMI Mental Health in Tech Survey
-Built with Streamlit, Scikit-learn, Pandas, and Matplotlib
+
+- Dataset from OSMI Mental Health in Tech Survey
+- Built with Streamlit, Scikit-learn, Pandas, and Matplotlib
 
 
