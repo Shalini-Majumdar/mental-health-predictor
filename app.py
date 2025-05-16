@@ -83,7 +83,7 @@ for col in input_df.select_dtypes(include='object').columns:
 
 input_scaled = scaler.transform(input_df)
 
-if st.button("🔍 Predict"):
+if st.button("Predict"):
     prediction = model.predict(input_scaled)[0]
     prob = model.predict_proba(input_scaled)[0][1]
     if prediction == 1:
