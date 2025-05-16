@@ -10,8 +10,6 @@ st.set_page_config(
     layout="centered"
 )
 
-# logo = Image.open("Mental_health_in_Tech.png")
-# st.image(logo, width=120)
 import base64
 
 # Function to convert image to base64
@@ -52,8 +50,6 @@ remote_work = st.selectbox("Do you work remotely?", ['Yes', 'No'])
 work_interfere = st.selectbox("Does your mental health interfere with work?", ['Never', 'Rarely', 'Sometimes', 'Often'])
 interview = st.selectbox("Would you be comfortable discussing your mental health in an interview?", ['Yes', 'No', 'Maybe'])
 
-# --- Step 1: Clean inputs as done in training ---
-# Gender cleaning (match training logic)
 gender = gender_input.lower()
 if 'male' in gender:
     gender = 'Male'
@@ -62,7 +58,6 @@ elif 'female' in gender:
 else:
     gender = 'Other'
 
-# --- Step 2: Construct dataframe ---
 input_dict = {
     'Age': age,
     'Gender': gender,
@@ -78,7 +73,6 @@ input_dict = {
 }
 input_df = pd.DataFrame([input_dict])
 
-# --- Step 3: Encode with error handling ---
 for col in input_df.select_dtypes(include='object').columns:
     encoder = encoders[col]
     value = input_df[col].iloc[0]
@@ -87,10 +81,8 @@ for col in input_df.select_dtypes(include='object').columns:
         st.stop()
     input_df[col] = encoder.transform([value])
 
-# --- Step 4: Scale ---
 input_scaled = scaler.transform(input_df)
 
-# --- Step 5: Predict ---
 if st.button("🔍 Predict"):
     prediction = model.predict(input_scaled)[0]
     prob = model.predict_proba(input_scaled)[0][1]
